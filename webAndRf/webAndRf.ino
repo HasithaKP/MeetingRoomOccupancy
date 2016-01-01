@@ -68,7 +68,6 @@ void loop() {
  if((currentTime-previousTime)>timeout){
 
     previousTime = currentTime;
-    rfTransmission();  
     updateESP();
   }
 }
@@ -169,17 +168,4 @@ void updateESP(){
     }
     
   }
-void rfTransmission(){
-  digitalWrite(rf, HIGH);
-  for(int i=0;i<5;i++){
-    String msg = "light="+String(light)+"&temperature="+String(temp)+"&motions="+String(motionCount)+"&sounds="+String(soundInc);
-    char sender[msg.length()];
-    //int msgLength = msg.length();
-    //char char_array[msgLength];
-    msg.toCharArray(sender,msg.length());
-    vw_send((uint8_t *)sender, strlen(sender));
-    vw_wait_tx(); // Wait until the whole message is gone  
-  }
-  Serial.println("Message sent complete");
-  digitalWrite(rf, LOW);
-}
+
