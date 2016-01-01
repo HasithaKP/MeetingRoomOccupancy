@@ -54,8 +54,9 @@ void setup() {
  setESP();
 }
 
-void loop() {
 
+void loop() {
+//loop to run until the timeout
  unsigned int currentTime = millis();
  if((currentTime-previousTime)<timeout){
   
